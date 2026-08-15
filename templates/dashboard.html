@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}
+Dashboard
+{% endblock %}
+{% block content %}
+<header class="page">
+<small>MY ACCOUNT</small>
+<h1>👋 Hello, {{session.get("user")}}</h1>
+<p>Your saved quiz results.</p>
+</header>
+<div class="box profile">
+<div class="avatar">{{session.get("user")[0]|upper}}</div>
+<div>
+<h2>{{session.get("user")}}</h2>
+<p>{{session.get("email")}}</p>
+</div>
+<a class="btn" href="/quiz">Take Quiz</a>
+</div>
+<div class="box table">
+<h2>Quiz History</h2>
+{% if results %}
+<table>
+<tr>
+<th>Score</th>
+<th>Percentage</th>
+<th>Date</th>
+</tr>
+{% for r in results %}
+<tr>
+<td>{{r.score}}/{{r.total}}</td>
+<td>{{(r.score*100/r.total)|round|int}}%</td>
+<td>{{r.created_at}}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<p>No quiz results yet.</p>
+{% endif %}
+</div>
+{% endblock %}

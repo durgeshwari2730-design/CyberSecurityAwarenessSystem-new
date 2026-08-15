@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}
+URL Checker
+{% endblock %}
+{% block content %}
+<header class="page">
+<small>SECURITY TOOL</small>
+<h1>🔗 URL Safety Checker</h1>
+<p>Check a website for common phishing warning signs.</p>
+</header>
+<div class="twocol">
+<div class="box">
+<h2>Check Website URL</h2>
+<form method="post">
+<label>Website URL</label>
+<input name="url" required placeholder="https://example.com">
+<button class="btn">🔍 Scan URL</button>
+</form>
+<aside>⚠️ Educational checker only. It cannot guarantee a website is safe.</aside>
+</div>
+{% if result %}
+<div class="box result {{result.kind}}">
+<div class="resulticon">
+{% if result.kind=="success" %}
+✓
+{% elif result.kind=="warning" %}
+⚠
+{% else %}
+!
+{% endif %}
+</div>
+<h2>{{result.title}}</h2>
+<p>{{result.message}}</p>
+{% if result.reasons %}
+<h3>Detected signals</h3>
+<ul>
+{% for x in result.reasons %}
+<li>{{x}}</li>
+{% endfor %}
+</ul>
+{% endif %}
+</div>
+{% endif %}
+</div>
+{% endblock %}

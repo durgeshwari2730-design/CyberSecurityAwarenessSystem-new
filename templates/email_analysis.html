@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}
+Email Analysis
+{% endblock %}
+{% block content %}
+<header class="page">
+<small>SECURITY TOOL</small>
+<h1>✉️ Email Phishing Analyzer</h1>
+<p>Paste an email and identify common phishing signals.</p>
+</header>
+<div class="twocol">
+<div class="box">
+<h2>Analyze Email</h2>
+<form method="post">
+<label>Subject</label>
+<input name="subject" placeholder="Email subject">
+<label>Email Body</label>
+<textarea name="body" rows="9" placeholder="Paste email content here...">
+</textarea>
+<button class="btn">🧪 Analyze Email</button>
+</form>
+</div>
+{% if result %}
+<div class="box result {{result.kind}}">
+<div class="resulticon">
+{% if result.kind=="success" %}
+✓
+{% elif result.kind=="warning" %}
+⚠
+{% else %}
+!
+{% endif %}
+</div>
+<h2>{{result.level}}</h2>
+{% if result.flags %}
+<h3>Warning signals found</h3>
+<div class="tags">
+{% for x in result.flags %}
+<span>{{x}}</span>
+{% endfor %}
+</div>
+{% else %}
+<p>No common phishing keywords were detected.</p>
+{% endif %}
+{% if result.links %}
+<h3>Links detected: {{result.links|length}}</h3>
+{% endif %}
+</div>
+{% endif %}
+</div>
+{% endblock %}

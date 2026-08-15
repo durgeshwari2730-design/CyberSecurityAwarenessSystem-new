@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}
+Security Quiz
+{% endblock %}
+{% block content %}
+<header class="page">
+<small>TEST YOURSELF</small>
+<h1>🧠 Cyber Security Quiz</h1>
+<p>Answer the questions and check your score.</p>
+</header>
+{% if score is not none %}
+<div class="score">Your Score: <b>{{score}}/5</b> 
+{% if score>=4 %}
+🎉 Excellent!
+{% elif score>=3 %}
+👍 Good Job!
+{% else %}
+💪 Keep Learning!
+{% endif %}
+</div>
+{% endif %}
+<form class="quiz" method="post">
+{% for q in questions %}
+<div class="question">
+<small>Q{{loop.index}}</small>
+<h2>{{q[0]}}</h2>
+{% for o in q[1] %}
+<label class="option">
+<input type="radio" name="q{{loop.index0}}" value="{{loop.index0}}" required>{{o}}</label>
+{% endfor %}
+</div>
+{% endfor %}
+<button class="btn">Submit Quiz →</button>
+</form>
+{% endblock %}

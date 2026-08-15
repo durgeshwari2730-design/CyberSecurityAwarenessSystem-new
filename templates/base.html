@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>
+{% block title %}
+CyberGuard
+{% endblock %}
+</title>
+<link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head>
+<body>
+<nav>
+<a class="logo" href="/">🛡️ Cyber<span>Guard</span>
+</a>
+<div class="nav">
+{% if session.get("email") %}
+<a href="/">Home</a>
+<a href="/url-checker">URL Checker</a>
+<a href="/email-analysis">Email</a>
+<a href="/quiz">Quiz</a>
+<a href="/awareness">Awareness</a>
+<a href="/dashboard">Dashboard</a>
+<a class="navbtn" href="/logout">Logout</a>
+{% else %}
+<a href="/">Home</a>
+<a href="/url-checker">URL Checker</a>
+<a href="/email-analysis">Email</a>
+<a href="/quiz">Quiz</a>
+<a href="/awareness">Awareness</a>
+<a class="navbtn" href="/login">Login</a>
+{% endif %}
+</div>
+</nav>
+{% with ms=get_flashed_messages(with_categories=true) %}
+{% for cat,msg in ms %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
+{% endwith %}
+<main>
+{% block content %}
+{% endblock %}
+</main>
+<footer>
+<div>
+<b>🛡️ CyberGuard</b>
+<div class="developers">Developed by <strong>Gangurde Vaishnavi</strong> &amp; <strong>Jadhav Durgeshwari</strong></div>
+</div>
+<span>Learn • Detect • Protect</span>
+<span>Cyber Security Awareness Project</span>
+</footer>
+</body>
+</html>

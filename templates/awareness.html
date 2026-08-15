@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+Awareness Hub
+{% endblock %}
+{% block content %}
+<header class="page">
+<small>LEARN & PROTECT</small>
+<h1>💡 Cyber Security Awareness</h1>
+<p>Simple habits that help you stay safer online.</p>
+</header>
+<div class="tips">
+{% for x in [("🔑","Strong Passwords","Use long, unique passwords and avoid reusing them."),("🔐","Enable MFA","Add another authentication layer to important accounts."),("🎣","Spot Phishing","Be careful with urgent messages and unexpected links."),("📱","Update Devices","Keep your OS, browser and apps updated."),("☁️","Backup Data","Keep backups of important files."),("🚫","Never Share OTP","Never share OTPs, PINs or passwords with strangers.")] %}
+<div class="tip">
+<span>{{x[0]}}</span>
+<h2>{{x[1]}}</h2>
+<p>{{x[2]}}</p>
+</div>
+{% endfor %}
+</div>
+<div class="gold">🛡️ <b>STOP • THINK • VERIFY • THEN CLICK</b>
+</div>
+{% endblock %}
